@@ -29,8 +29,8 @@ header{
 }
 
 .alert{
-	background-color: #a52f00;
-	color: #fdfdfd;
+	background-color: #640000;
+	color: rgb(222, 142, 127);
 	padding: 10px 20px;
 }
 .error{
@@ -71,6 +71,10 @@ header{
 
 header .active{
 	border-bottom: solid 4px #a0153e;
+	
+}
+header .active a{
+	text-decoration: none;
 }
 .nav-item a:visited {
     color: initial;
@@ -262,3 +266,4 @@ header .socials{
 		flex-direction: column;
 	}
 }
+

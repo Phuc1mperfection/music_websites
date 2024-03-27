@@ -1,5 +1,7 @@
 <?php
+
 include "../app/core/functions.php";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'])) {
 
     // Sanitize username to prevent SQL injection

@@ -1,10 +1,7 @@
-<?php 
+<link rel="stylesheet" type="text/css" href="../public/assets/css/style.css">
 
-if(!is_admin())
-{
-	message("only admins can access the admin page");
-	redirect('login');
-}
+
+<?php 
 
 	$section 	= $URL[1] ?? "dashboard";
 	$action 	= $URL[2] ?? null;

@@ -26,6 +26,8 @@ body a{
 
 header{
 	display: flex;
+	background: linear-gradient(to right, #fff 0%, #e1ddf5 100%, #000 100%);	
+	padding: 10px 20px;
 }
 
 .alert{
@@ -34,7 +36,7 @@ header{
 	padding: 10px 20px;
 }
 .error{
-	color: rgb(247, 247, 247);
+	color: rgb(202, 15, 15);
 }
 .logo-holder{
 	width: 140px;
@@ -56,12 +58,16 @@ header{
 	padding: 10px;
 	text-align: center;
 	min-width: 80px;
+	color: white;
+	
 }
 
 .nav-item2{
 	padding: 10px;
 	text-align: center;
 	min-width: 80px;
+	color: white;
+
 }
 
 .main-title{
@@ -70,7 +76,7 @@ header{
 }
 
 header .active{
-	border-bottom: solid 4px #a0153e;
+	border-bottom: solid 4px #120b80;
 	
 }
 header .active a{
@@ -81,6 +87,7 @@ header .active a{
 }
 .nav-item a:link {
 	color: initial;
+	
 
 }
 .dropdown{
@@ -119,7 +126,7 @@ header .active a{
 .music-card{
 	width: 200px;
 	margin:20px;
-	background-color: #79230e;
+	background-color: #160075;
 	border-radius: 10px;
 	color: white;
 }
@@ -146,14 +153,16 @@ footer a{
 
 footer{
 	padding: 20px;
-	background-color: #8b2917;
+	background-color: #174b8b;
 	display: flex;
 	color: white;
 }
 
 .footer-div{
-	flex:1;
+	flex: 1;
 	padding: 10px;
+
+
 }
 
 .form-control{
@@ -168,7 +177,7 @@ footer{
 	cursor: pointer;
 }
 
-.btn.bg-orange {
+.btn.bg-blue {
     margin-top: 10px;
 }
 
@@ -182,8 +191,8 @@ footer{
 	color: white;
 }
 
-.bg-orange{
-	background-color: #FF9800;
+.bg-blue{
+	background-color: #00c3ff;
 	color: white;
 }
 
@@ -217,7 +226,8 @@ footer{
 
 .admin-content{
 	padding: 20px;
-	background-color: #fefbed;
+	background-color: #496989;
+	color: #fff;
 }
 
 .form-group{
@@ -246,14 +256,24 @@ header .socials{
 
 }
 
+
 .table th, .table td{
 	border: solid thin #ccc;
 	padding: 5px 10px;
+	transition: all;
+	
+
 }
 
 .table th{
-	background-color: #8b2917;
+	background-color: #183D3D;
 	color: white;
+}
+.table tr:hover {
+    background-color: #177a8b !important;
+    color: white !important;
+	transition: 0.5s;
+	
 }
 
 @media (max-width: 768px){

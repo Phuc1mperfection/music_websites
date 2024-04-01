@@ -1,6 +1,6 @@
 <?php 
 
-
+$action = $URL[2] ?? null;
 	if($action == 'add')
 	{
 
@@ -33,10 +33,10 @@
 			if($_POST['password'] != $_POST['retype_password']){
 				$errors['password'] = "passwords do not match";
 			}else
-			if(strlen($_POST['password']) < 8)
-			{
-				$errors['password'] = "password must be 8 characters or more";
-			}
+			// if(strlen($_POST['password']) < 8)
+			// {
+			// 	$errors['password'] = "password must be 8 characters or more";
+			// }
 
 			if(empty($_POST['role']))
 			{
@@ -50,7 +50,7 @@
 				$values['username'] = trim($_POST['username']);
 				$values['email'] 	= trim($_POST['email']);
 				$values['role'] 	= trim($_POST['role']);
-				$values['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+				$values['password'] = ($_POST['password']);
 
 				$query = "insert into users (username,email,password,role) values (:username,:email,:password,:role)";
 				db_query($query,$values);
@@ -119,7 +119,7 @@
 				if(!empty($_POST['password']))
 				{
 					$query = "update users set email = :email, password = :password, username = :username, role = :role where id = :id limit 1";
-					$values['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+					$values['password'] = ($_POST['password']);
 				}
 
 				db_query($query,$values);
@@ -199,7 +199,7 @@
 
 	  				<input class="form-control my-1" value="<?=set_value('retype_password')?>" type="password" name="retype_password" placeholder="Retype Password">
 	  				
-	  				<button class="btn bg-orange">Save</button>
+	  				<button class="btn bg-purple">Save</button>
 	  				<a href="<?=ROOT?>/admin/users">
 	  					<button type="button" class="float-end btn">Back</button>
 	  				</a>
@@ -240,7 +240,7 @@
 
 	  				<input class="form-control my-1" value="<?=set_value('retype_password')?>" type="password" name="retype_password" placeholder="Retype Password">
 	  				
-	  				<button class="btn bg-orange">Save</button>
+	  				<button class="btn bg-purple">Save</button>
 	  				<a href="<?=ROOT?>/admin/users">
 	  					<button type="button" class="float-end btn">Back</button>
 	  				</a>

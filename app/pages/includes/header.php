@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title><?=ucfirst($URL[0])?> - Music Website</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/style.css?67er">
@@ -10,7 +9,7 @@
 
 	<header>
 		<div class="logo-holder">
-			<a href="<?=ROOT?>"><img class="logo" src="<?=ROOT?>/assets/images/logo.jpg"></a>
+		<center><img src="assets/images/logo.jpg" style="width: 100%;border-radius: 50%;border: solid thin #f7f7f7;"></center>
 		</div>
 		<div class="header-div">
 			<div class="main-title">
@@ -39,7 +38,8 @@
 					</div>
 				</div>
 				<div class="nav-item"><a href="<?=ROOT?>/artists">Artists</a></div>
-				
+				<div class="nav-item"><a href="../public/login.php">Login</a></div>	
+
 				<?php if(logged_in()):?>
 					<div class="nav-item dropdown">
 						<a href="#">Hi, <?=user('username')?></a>

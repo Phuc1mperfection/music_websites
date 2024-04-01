@@ -1,6 +1,7 @@
 <?php 
+require page('includes/admin-header');
 
-
+$action = isset($URL[2]) ? $URL[2] : null;
 	if($action == 'add')
 	{
 
@@ -14,9 +15,8 @@
 			{
 				$errors['title'] = "a title is required";
 			}else
-			if(!preg_match("/^[a-zA-Z0-9 \.\&\-]+$/", $_POST['title'])){
-				$errors['title'] = "a title can only have letters & spaces";
-			}
+			
+			
 
 			if(empty($_POST['category_id']))
 			{
@@ -61,7 +61,7 @@
 			if(!empty($_FILES['file']['name']))
 			{
 
-				$folder = "uploads/";
+				$folder = "uploads/song/";
 				if(!file_exists($folder))
 				{
 					mkdir($folder,0777,true);
@@ -123,9 +123,7 @@
 			{
 				$errors['title'] = "a title is required";
 			}else
-			if(!preg_match("/^[a-zA-Z0-9 \.\&\-]+$/", $_POST['title'])){
-				$errors['title'] = "a title can only have letters & spaces";
-			}
+			
 
 			if(empty($_POST['category_id']))
 			{
@@ -173,7 +171,7 @@
 			if(!empty($_FILES['file']['name']))
 			{
 
-				$folder = "uploads/";
+				$folder = "uploads/song/";
 				if(!file_exists($folder))
 				{
 					mkdir($folder,0777,true);
@@ -272,7 +270,6 @@
 
 ?>
 
-<?php require page('includes/admin-header')?>
 
 	<section class="admin-content" style="min-height: 200px;">
   
@@ -341,7 +338,7 @@
 		  				<?php endif;?>
 		  			</div>
  
-	  				<button class="btn bg-orange">Save</button>
+	  				<button class="btn bg-blue">Save</button>
 	  				<a href="<?=ROOT?>/admin/songs">
 	  					<button type="button" class="float-end btn">Back</button>
 	  				</a>
@@ -416,7 +413,7 @@
 		  				<?php endif;?>
 		  			</div>
 
-	  				<button class="btn bg-orange">Save</button>
+	  				<button class="btn bg-blue">Save</button>
 	  				<a href="<?=ROOT?>/admin/songs">
 	  					<button type="button" class="float-end btn">Back</button>
 	  				</a>
@@ -463,9 +460,8 @@
 
   			<?php
   				$limit = 20;
-				$offset = ($page - 1) * $limit;
 
-  				$query = "select * from songs order by id desc limit $limit offset $offset";
+  				$query = "select * from songs order by id desc limit $limit ";
   				$rows = db_query($query);
 
   			?>
@@ -517,14 +513,12 @@
 
   	<div class="mx-2">
 		<a href="<?=ROOT?>/admin/songs?page=<?=$prev_page?>">
-			<button class="btn bg-orange">Prev</button>
+			<button class="btn bg-blue">Prev</button>
 		</a>
 		<a href="<?=ROOT?>/admin/songs?page=<?=$next_page?>">
-			<button class="float-end btn bg-orange">Next</button>
+			<button class="float-end btn bg-blue">Next</button>
 		</a>
 	</div>
 
 
 	</section>
-
-<?php require page('includes/admin-footer')?>

@@ -14,9 +14,7 @@
 			{
 				$errors['name'] = "a name is required";
 			}else
-			if(!preg_match("/^[a-zA-Z \&\-]+$/", $_POST['name'])){
-				$errors['name'] = "a name can only have letters & spaces";
-			}
+			
 
 			//image
 			if(!empty($_FILES['image']['name']))
@@ -79,9 +77,7 @@
 			{
 				$errors['name'] = "a name is required";
 			}else
-			if(!preg_match("/^[a-zA-Z \&\-]+$/", $_POST['name'])){
-				$errors['name'] = "a name can only have letters with no spaces";
-			}
+			
 
  			//image
 			if(!empty($_FILES['image']['name']))
@@ -198,7 +194,7 @@
 	  					<small class="error"><?=$errors['image']?></small>
 	  				<?php endif;?>
  
-	  				<button class="btn bg-orange">Save</button>
+	  				<button class="btn bg-purple">Save</button>
 	  				<a href="<?=ROOT?>/admin/artists">
 	  					<button type="button" class="float-end btn">Back</button>
 	  				</a>
@@ -226,7 +222,7 @@
 	  				<label>Artist Bio:</label>
 	  				<textarea rows="10" class="form-control my-1" name="bio"><?=set_value('bio',$row['bio'])?></textarea>
 
-	  				<button class="btn bg-orange">Save</button>
+	  				<button class="btn bg-purple">Save</button>
 	  				<a href="<?=ROOT?>/admin/artists">
 	  					<button type="button" class="float-end btn">Back</button>
 	  				</a>

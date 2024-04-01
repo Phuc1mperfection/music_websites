@@ -1,52 +1,38 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Music Website</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="<?=ROOT?>/assets/css/style.css?52423">
+	<link rel="stylesheet" type="text/css" href="http://localhost:84/music_websites/public/assets/css/style.css">
 
 </head>
+
 <body>
-	<style>
-		header a{
-			color: white;
-		}
-
-		.dropdown-list{
-			background-color: white;
-
-		}
-	</style>
+	
 	<header style="background-color: white; color: black;">
 		<div class="logo-holder">
-			<a href="<?=ROOT?>"><img class="logo" src="<?=ROOT?>/assets/images/logo.jpg"></a>
+			<center><img src="http://localhost:84/music_websites/public/assets/images/logo.jpg" style="width: 50%;border-radius: 50%;border: solid thin #f7f7f7;" alt="asd"></center>
 		</div>
-		<div class="header-div">
+		<div class="heaeder-div">
 			<div class="main-title">
 				ADMIN AREA
 				<div class="socials">
-				
+
 				</div>
 			</div>
 			<div class="main-nav">
-				<div class="nav-item"><a href="<?=ROOT?>/admin">Dashboard</a></div>
+				<div class="nav-item"><a href="<?=ROOT?>/admin/dashboard">Dashboard</a></div>
 				<div class="nav-item"><a href="<?=ROOT?>/admin/users">Users</a></div>
 				<div class="nav-item"><a href="<?=ROOT?>/admin/songs">Songs</a></div>
 				<div class="nav-item"><a href="<?=ROOT?>/admin/categories">Categories</a></div>
 				<div class="nav-item"><a href="<?=ROOT?>/admin/artists">Artists</a></div>
-				<div class="nav-item dropdown">
-					<a href="#">Hi, <?=user('username')?></a>
-					<div class="dropdown-list">
-						<div class="nav-item"><a href="<?=ROOT?>/profile">Profile</a></div>
-						<div class="nav-item"><a href="<?=ROOT?>">Website</a></div>
-						<div class="nav-item"><a href="<?=ROOT?>/logout">Logout</a></div>
-					</div>
-				</div>
+				<a href="#"></a>
+				<div class="nav-item"><a href="<?=ROOT?>/logout">Logout</a></div>
 			</div>
 		</div>
 	</header>
-
-	<?php if(message()):?>
-		<div class="alert"><?=message('',true)?></div>
-	<?php endif;?>

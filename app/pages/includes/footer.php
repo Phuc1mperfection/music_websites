@@ -1,13 +1,8 @@
 	<footer>
 		<div class="footer-div">
 			<ul>
-				<li><a href="">Home</a></li>
-				<li><a href="">Music</a></li>
-
-				
-				<?php if(!logged_in()):?>
-					<li><a href="<?=ROOT?>/login">Login</a></li>
-				<?php endif;?>
+				<li><a href="index.php">Home</a></li>
+				<li ><a href="../public/sign_up.php">Sign up</a></li>				
 
 			</ul>
 		</div>

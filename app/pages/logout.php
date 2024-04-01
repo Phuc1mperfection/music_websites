@@ -1,5 +1,5 @@
 <?php
-
+include "../core/functions.php";
 if(!empty($_SESSION['USER']))
 {
 	unset($_SESSION['USER']);
@@ -7,4 +7,5 @@ if(!empty($_SESSION['USER']))
 	session_regenerate_id();
 }
 
-redirect('login');
+header("Location: http://localhost:84/music_websites/public/login.php");
+exit();

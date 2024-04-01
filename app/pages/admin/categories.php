@@ -122,7 +122,7 @@
 	  					<small class="error"><?=$errors['disabled']?></small>
 	  				<?php endif;?>
  
-	  				<button class="btn bg-orange">Save</button>
+	  				<button class="btn bg-purple">Save</button>
 	  				<a href="<?=ROOT?>/admin/categories">
 	  					<button type="button" class="float-end btn">Back</button>
 	  				</a>
@@ -148,7 +148,7 @@
 	  					<option <?=set_select('disabled','0',$row['disabled'])?> value="0">No</option>
 	  				</select>
 
-	  				<button class="btn bg-orange">Save</button>
+	  				<button class="btn bg-purple">Save</button>
 	  				<a href="<?=ROOT?>/admin/categories">
 	  					<button type="button" class="float-end btn">Back</button>
 	  				</a>

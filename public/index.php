@@ -1,4 +1,5 @@
 <?php 
+
 require "../app/core/init.php";
 
 $URL = $_GET['url'] ?? "home";

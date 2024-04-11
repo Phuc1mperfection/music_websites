@@ -16,7 +16,7 @@
 	
 	<header style="background-color: white; color: black;">
 		<div class="logo-holder">
-			<center><img src="http://localhost:84/music_websites/public/assets/images/logo.jpg" style="width: 50%;border-radius: 50%;border: solid thin #f7f7f7;" alt="asd"></center>
+		<center><img src="../assets/images/treble-clef.png" style="border-radius: 10%;"></center>
 		</div>
 		<div class="heaeder-div">
 			<div class="main-title">

@@ -94,12 +94,11 @@ $action = isset($URL[2]) ? $URL[2] : null;
 				$values['artist_id'] 	= trim($_POST['artist_id']);
 				$values['image'] 	= $destination_image;
 				$values['file'] 	= $destination_file;
-				$values['user_id'] 	= user('id');
 				$values['date'] 	= date("Y-m-d H:i:s");
 				$values['views'] 	= 0;
 				$values['slug'] 	= str_to_url($values['title']);
 
-				$query = "insert into songs (title,image,file,user_id,category_id,artist_id,date,views,slug) values (:title,:image,:file,:user_id,:category_id,:artist_id,:date,:views,:slug)";
+				$query = "insert into songs (title,image,file,category_id,artist_id,date,views,slug) values (:title,:image,:file,:category_id,:artist_id,:date,:views,:slug)";
 				db_query($query,$values);
 
 				message("song created successfully");
@@ -178,7 +177,7 @@ $action = isset($URL[2]) ? $URL[2] : null;
 					file_put_contents($folder."index.php", "");
 				}
 
-				$allowed = ['audio/mpeg'];
+				$allowed = ['audio/mpeg' , 'audio/mp4', 'audio/x-m4a'];
 				if($_FILES['file']['error'] == 0 && in_array($_FILES['file']['type'], $allowed))
 				{
 					
@@ -205,10 +204,9 @@ $action = isset($URL[2]) ? $URL[2] : null;
 				$values['title'] 	= trim($_POST['title']);
 				$values['category_id'] 	= trim($_POST['category_id']);
 				$values['artist_id'] 	= trim($_POST['artist_id']);
-				$values['user_id'] 	= user('id');
 				$values['id'] 		= $id;
 
-				$query = "update songs set title = :title,user_id =:user_id,category_id =:category_id,artist_id =:artist_id";
+				$query = "update songs set title = :title,category_id =:category_id,artist_id =:artist_id";
 				
 				if(!empty($destination_image)){
 					$query .= ", image = :image";

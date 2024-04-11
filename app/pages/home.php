@@ -5,6 +5,7 @@
 
 	<section>
 		<img class="hero" src="<?=ROOT?>/assets/images/hero.jpg">
+		
 	</section>
 	
 	<div class="section-title">Featured</div>

@@ -1,7 +1,7 @@
 	<footer>
 		<div class="footer-div">
 			<ul>
-				<li><a href="index.php">Home</a></li>
+				<li><a href="home.php">Home</a></li>
 				<li ><a href="../public/sign_up.php">Sign up</a></li>				
 
 			</ul>

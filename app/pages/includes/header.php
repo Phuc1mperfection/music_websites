@@ -9,7 +9,7 @@
 
 	<header>
 		<div class="logo-holder">
-		<center><img src="assets/images/logo.jpg" style="width: 100%;border-radius: 50%;border: solid thin #f7f7f7;"></center>
+		<center><img src="assets/images/treble-clef.png" style="border-radius: 10%;"></center>
 		</div>
 		<div class="header-div">
 			<div class="main-title">
@@ -19,9 +19,8 @@
 			<div class="main-nav">
 				<div class="nav-item"><a href="<?=ROOT?>">Home</a></div>
 				<div class="nav-item"><a href="<?=ROOT?>/music">Music</a></div>
-				<div class="nav-item dropdown">
+				<!-- <div class="nav-item dropdown">
 					<a href="#">Category</a>
-
  					<?php 
  						$query = "select * from categories order by category asc";
  						$categories = db_query($query);
@@ -36,15 +35,13 @@
 	  					<?php endif;?>
  
 					</div>
-				</div>
+				</div> -->
 				<div class="nav-item"><a href="<?=ROOT?>/artists">Artists</a></div>
 				<div class="nav-item"><a href="../public/login.php">Login</a></div>	
 
 				<?php if(logged_in()):?>
 					<div class="nav-item dropdown">
-						<a href="#">Hi, <?=user('username')?></a>
 						<div class="dropdown-list">
-							<div class="nav-item"><a href="<?=ROOT?>/admin/users/edit/<?=user('id')?>">Profile</a></div>
 							<div class="nav-item"><a href="<?=ROOT?>/admin">Admin</a></div>
 							<div class="nav-item"><a href="<?=ROOT?>/logout">Logout</a></div>
 						</div>

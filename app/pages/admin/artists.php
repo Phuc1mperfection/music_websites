@@ -51,9 +51,8 @@
 				$values['name'] = trim($_POST['name']);
 				$values['bio'] = trim($_POST['bio']);
 				$values['image'] 	= $destination;
-				$values['user_id'] 	= user('id');
 
-				$query = "insert into artists (name,image,user_id,bio) values (:name,:image,:user_id,:bio)";
+				$query = "insert into artists (name,image,bio) values (:name,:image,:bio)";
 				db_query($query,$values);
 
 				message("artist created successfully");
@@ -116,13 +115,12 @@
 				$values = [];
 				$values['name'] = trim($_POST['name']);
 				$values['bio'] = trim($_POST['bio']);
-				$values['user_id'] 	= user('id');
 				$values['id'] 		= $id;
 
-				$query = "update artists set name = :name,bio = :bio,user_id =:user_id where id = :id limit 1";
+				$query = "update artists set name = :name,bio = :bio where id = :id limit 1";
 				
 				if(!empty($destination)){
-					$query = "update artists set name = :name,bio = :bio,user_id =:user_id, image = :image where id = :id limit 1";
+					$query = "update artists set name = :name,bio = :bio, image = :image where id = :id limit 1";
 					$values['image'] 	= $destination;
 				}
 

@@ -22,10 +22,10 @@
 
 	<div class="mx-2">
 		<a href="<?=ROOT?>/music?page=<?=$prev_page?>">
-			<button class="btn bg-orange">Prev</button>
+			<button class="float-end btn bg-blue">Prev</button>
 		</a>
 		<a href="<?=ROOT?>/music?page=<?=$next_page?>">
-			<button class="float-end btn bg-orange">Next</button>
+			<button class="float-end btn bg-blue">Next</button>
 		</a>
 	</div>
 <?php require page('includes/footer')?>

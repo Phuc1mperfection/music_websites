@@ -1,4 +1,7 @@
-<?php require page('includes/header')?>
+<?php require page('includes/header');
+require_once '../app/core/functions.php';
+
+?>
 	
 	<div class="section-title">Category</div>
 

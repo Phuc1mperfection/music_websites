@@ -46,9 +46,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'])) {
 }
 
 ?>
+<style>
+    .signup-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            opacity: 1;
 
+        }
+
+        .signup-container form {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid silver;
+        }
+
+        .signup-container h2 {
+            text-align: center;
+            border-bottom: 1px solid silver;
+            padding-bottom: 10px;
+        }
+
+        .signup-container input[type="text"],
+        .signup-container input[type="password"] {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .signup-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #174b8b;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .signup-container button:hover {
+            background-color: darkblue;
+            transition: all 0.3s;
+        }
+
+        .alert {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            color: #721c24;
+        }
+
+        .txt_field input {
+            width: 100%;
+            padding: 0 5px;
+            height: 40px;
+            font-size: 16px;
+            border: none;
+            background: none;
+            outline: none;
+        }
+
+        .txt_field input:focus~label,
+        .txt_field input:valid~label {
+            top: -5px;
+            color: #2691d9;
+        }
+
+        .txt_field input:focus~span::before,
+        .txt_field input:valid~span::before {
+            width: 100%;
+        }
+
+</style>
 <section class="content">
-  <div class="signup-holder">
+  <div class="signup-container">
     <?php if (message()): ?>
       <div class="alert"><?= message('', true) ?></div>
     <?php endif; ?>

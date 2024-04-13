@@ -1,7 +1,12 @@
 <?php
-    include "../public/functions.php";
-    //chưa lấy được mã người dùng từ login lên là lấy mặc định
-    $uid = 1;
+    include "../public/user/functions.php";
+    session_start();
+    // if (!isset($_SESSION['uid'])) {
+    //     // Redirect to the login page or display an error message
+    //     header("Location: login.php");
+    //     exit();
+    // }
+    $uid = $_SESSION['uid'];
     $user_playlists = get_user_playlists($uid);
     $albums = get_albums();
     $artists = get_artists();
@@ -25,11 +30,11 @@
             <ul>
                 <!-- <li><a href="#"><span class="fa fa-home"></span><span>Home</span></a></li> -->
                 <!-- dựa vào số lượng view nhưng do chưa có chưa hoạt động -->
-                <li><a href="#" id="songs_link"><span class="fa fas fa-book"></span><span>Top Music</span></a></li>
+                <li><a href="#" id="top_music_link"><span class="fa fas fa-book"></span><span>Top Music</span></a></li>
                 <!-- <li><a href="#"><span class="fa fas fa-book"></span><span>Your Library</span></a></li> -->
                 <li><a href="#"><span class="fa fas fa-plus-square"></span><span>Create Playlist</span></li>
                 <!-- csdl chưa có lấy được uid truyền vào nên chưa lấy đc -->
-                <li><a href="#" id="top_music_link"><span class="fa fas fa-heart"></span><span>Liked Songs</span></a></li>
+                <li><a href="#" id="songs_link"><span class="fa fas fa-heart"></span><span>Liked Songs</span></a></li>
             </ul>
         </div>
     </div>
@@ -159,7 +164,7 @@
             loadSongs('all', '');
         });
         document.getElementById('songs_link').addEventListener('click', function() {
-            loadSongs('like', '');
+            loadSongs('like', '<?php echo $uid; ?>');
         });
         document.getElementById('top_music_link').addEventListener('click', function() {
             loadSongs('top', '');

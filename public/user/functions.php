@@ -103,23 +103,21 @@ function get_songs_by_artist($aid) {
 }
 
 function get_favorite_songs($uid) {
-	$query = "SELECT songs.id AS sid, songs.title, artists.name AS artist_name, songs.image AS song_image, songs.file AS file_path
-			FROM user_playlists
-			INNER JOIN songs ON user_playlists.sid = songs.id
-			INNER JOIN artists ON songs.artist_id = artists.id
-			WHERE user_playlists.uid = ? AND user_playlists.favorite = 1";
-	return db_query($query, array($uid));
+    $query = "SELECT songs.id AS sid, songs.title, artists.name AS artist_name, songs.image AS song_image, songs.file AS file_path
+            FROM user_playlists
+            INNER JOIN songs ON user_playlists.sid = songs.id
+            INNER JOIN artists ON songs.artist_id = artists.id
+            WHERE user_playlists.uid = ? AND user_playlists.favorite = 1";
+    return db_query($query, array($uid));
 }
 
-function get_top_songs($limit) {
-	$query = "SELECT songs.id AS sid, songs.title, artists.name AS artist_name, songs.image AS song_image, songs.file AS file_path
-			FROM user_playlists
-			INNER JOIN songs ON user_playlists.sid = songs.id
-			INNER JOIN artists ON songs.artist_id = artists.id
-			GROUP BY songs.id
-			ORDER BY COUNT(user_playlists.sid) DESC
-			LIMIT ?";
-	return db_query($query, array($limit));
+function get_top_songs() {
+    $query = "SELECT songs.id AS sid, songs.title, artists.name AS artist_name, songs.image AS song_image, songs.file AS file_path
+            FROM songs
+            INNER JOIN artists ON songs.artist_id = artists.id
+            ORDER BY songs.views DESC
+            LIMIT 2";
+    return db_query($query);
 }
 
 function get_all_songs(){

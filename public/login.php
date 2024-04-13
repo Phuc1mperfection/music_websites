@@ -99,6 +99,7 @@
 
             if (!empty($row) && $password == $row['password']) {
                 authenticate($row);
+                $_SESSION['uid'] = $row['id'];
                 message("Login successful");
 
                 // Kiểm tra vai trò của người dùng và chuyển hướng tương ứng

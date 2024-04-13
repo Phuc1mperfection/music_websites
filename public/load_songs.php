@@ -1,12 +1,15 @@
 <?php
-include "../app/core/functions.php";
-if(isset($_SESSION['uid']) && isset($_GET['option']) && isset($_GET['id'])) {
-    $option = $_GET['option'];
-    $id = $_GET['id'];
-    $uid = $_SESSION['uid']; 
-// if(isset($_GET['option']) && isset($_GET['id'])) {
+include "../public/functions.php";
+
+// Kiểm tra xem uid có tồn tại trong session hay không
+// if(isset($_SESSION['uid']) && isset($_GET['option']) && isset($_GET['id'])) {
 //     $option = $_GET['option'];
 //     $id = $_GET['id'];
+//     $uid = $_SESSION['uid']; 
+// Lấy uid từ session
+if(isset($_GET['option']) && isset($_GET['id'])) {
+    $option = $_GET['option'];
+    $id = $_GET['id'];
 
     if($option === 'playlist') {
         $songs = get_songs_by_playlist($id);

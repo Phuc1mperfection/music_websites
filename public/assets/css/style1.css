@@ -270,6 +270,7 @@ body {
     justify-content: space-between;
     height: 7%;
     padding: 10px;
+    border: 1px solid #ffff;
 }
 
 .main-container .menu-side .menu-button .button {

@@ -18,6 +18,9 @@ $artists = get_artists();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../public/assets/css/style1.css">
     <link rel="stylesheet" href="../public/assets/css//preview.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Music Website</title>
 </head>
 
@@ -46,17 +49,14 @@ $artists = get_artists();
                 <button><span class="fa fa-search"></span></button>
             </div>
             <div class="navbar">
-                <ul>
-                    <!-- <li>
+                <!-- <li>
                         <a href="#">Download</a>
                     </li> -->
-                    <!-- <li class="divider">|</li> -->
-                    <li>
-                        <button type="button" onclick="location.href='sign_up.php';" style="margin-right: 10px;">Sign Up</button>
-                    </li>
-                </ul>
+                <!-- <li class="divider">|</li> -->
+                <div class="btn">
+                <button type="button" onclick="location.href='sign_up.php';">Sign Up</button>
                 <button type="button" onclick="location.href='login.php';">Login</button>
-                </li>
+                </div>
             </div>
         </div>
         <div class="main-slider">

@@ -1,33 +1,25 @@
 <?php
-include "../app/core/functions.php";
-include "../app/core/config.php";
-$uid = 1;
-$user_playlists = get_user_playlists($uid);
-if ($user_playlists === false || empty($user_playlists)) {
-    $user_playlists = [];
-}
-$albums = get_albums();
-$artists = get_artists();
+    include "../public/functions.php";
+    //chưa lấy được mã người dùng từ login lên là lấy mặc định
+    $uid = 1;
+    $user_playlists = get_user_playlists($uid);
+    $albums = get_albums();
+    $artists = get_artists();
 ?>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../public/assets/css/style1.css">
     <link rel="stylesheet" href="../public/assets/css//preview.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Music Website</title>
 </head>
 
 <body>
     <div class="sidebar">
         <div class="logo">
-            <a href="#"><img src="../public/assets/images/treble-clef.png" alt="Logo" /></a>
+            <a href="#"><img src="../public/assets/images/logo.jpg" alt="Logo" /></a>
         </div>
         <div class="navigation">
             <ul>
@@ -47,7 +39,7 @@ $artists = get_artists();
             <div class="search">
                 <input type="text" placeholder="Tìm kiếm..." class="search-input">
                 <button><span class="fa fa-search"></span></button>
-            </div>
+            </div> 
             <div class="navbar">
                 <!-- <li>
                         <a href="#">Download</a>
@@ -62,37 +54,37 @@ $artists = get_artists();
         <div class="main-slider">
             <h2>Playlists</h2>
             <div class="list">
-                <?php foreach ($user_playlists as $playlist) : ?>
-                    <div class="item" onclick="loadSongsByPlaylist(<?php echo $playlist['pid']; ?>)">
-                        <img src="../public/assets/images/hero.jpg" />
-                        <h4><?php echo $playlist['playlist_name']; ?></h4>
-                        <p>Description...</p>
-                    </div>
-                <?php endforeach; ?>
+            <?php foreach ($user_playlists as $playlist): ?>
+                <div class="item" onclick="loadSongsByPlaylist(<?php echo $playlist['pid']; ?>)">
+                    <img src="../public/assets/images/hero.jpg" />
+                    <h4><?php echo $playlist['playlist_name']; ?></h4>
+                    <p>Description...</p>
+                </div>
+            <?php endforeach; ?>
             </div>
         </div>
         <div class="main-slider">
             <h2>Album</h2>
             <div class="list">
-                <?php foreach ($albums as $album) : ?>
-                    <div class="item" onclick="loadSongsByAlbum(<?php echo $album['abid']; ?>)">
-                        <img src="<?php echo $album['album_image']; ?>" />
-                        <h4><?php echo $album['title']; ?></h4>
-                        <p>Description...</p>
-                    </div>
-                <?php endforeach; ?>
+            <?php foreach ($albums as $album): ?>
+                <div class="item" onclick="loadSongsByAlbum(<?php echo $album['abid']; ?>)">
+                    <img src="<?php echo $album['album_image']; ?>" />
+                    <h4><?php echo $album['title']; ?></h4>
+                    <p>Description...</p>
+                </div>
+            <?php endforeach; ?>
             </div>
         </div>
         <div class="main-slider">
             <h2>Nghệ Sĩ</h2>
             <div class="list">
-                <?php foreach ($artists as $artist) : ?>
-                    <div class="item" onclick="loadSongsByArtist(<?php echo $artist['aid']; ?>)">
-                        <img src="<?php echo $artist['artist_image']; ?>" />
-                        <h4><?php echo $artist['artist_name']; ?></h4>
-                        <p>Description...</p>
-                    </div>
-                <?php endforeach; ?>
+            <?php foreach ($artists as $artist): ?>
+                <div class="item" onclick="loadSongsByArtist(<?php echo $artist['aid']; ?>)">
+                    <img src="<?php echo $artist['artist_image']; ?>" />
+                    <h4><?php echo $artist['artist_name']; ?></h4>
+                    <p>Description...</p>
+                </div>
+            <?php endforeach; ?>
             </div>
         </div>
         <div class="menu-side">
@@ -106,9 +98,9 @@ $artists = get_artists();
             </div>
             <div class="menu-song">
                 <ul>
-                    <?php
-                    $songs = get_all_songs();
-                    displaySongs($songs); ?>
+                    <?php 
+                        $songs = get_all_songs();
+                        displaySongs($songs);?>
                 </ul>
             </div>
         </div>
@@ -123,7 +115,7 @@ $artists = get_artists();
                 <i class="bi bi-skip-end-fill" id="next_button"></i>
             </div>
             <div class="container-audio">
-                <audio controls loop>
+                <audio controls  loop>
                     <source src="../public/uploads/song/0.mp3" type="audio/ogg">
                 </audio>
             </div>
@@ -134,13 +126,11 @@ $artists = get_artists();
         //chuyển nhạc
         var currentSongIndex = 0;
         var songs = <?php echo json_encode($songs); ?>;
-
         function nextSong() {
             currentSongIndex = (currentSongIndex + 1) % songs.length;
             var nextSong = songs[currentSongIndex];
             loadSong(nextSong.title, nextSong.artist_name, nextSong.song_image, nextSong.file_path);
         }
-
         function previousSong() {
             currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
             var previousSong = songs[currentSongIndex];
@@ -153,17 +143,15 @@ $artists = get_artists();
             document.getElementById('name_song').innerHTML = `
                 ${title} <div class="subtitle">${artist}</div>`;
             document.querySelector('.preview img').src = image;
-            document.querySelector('.container-audio audio').src = "../public/" + filePath;
+            document.querySelector('.container-audio audio').src = "../public/uploads/song/" + filePath;
         }
         //sự kiện click list nhạc theo album, playlist, artist.
         function loadSongsByPlaylist(pid) {
             loadSongs('playlist', pid);
         }
-
         function loadSongsByAlbum(abid) {
             loadSongs('album', abid);
         }
-
         function loadSongsByArtist(aid) {
             loadSongs('artist', aid);
         }
@@ -176,7 +164,6 @@ $artists = get_artists();
         document.getElementById('top_music_link').addEventListener('click', function() {
             loadSongs('top', '');
         });
-
         function loadSongs(option, id) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -189,5 +176,4 @@ $artists = get_artists();
         }
     </script>
 </body>
-
 </html>

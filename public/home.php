@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
 session_start();
 include_once "../public/user/playlist_create.php";
@@ -11,6 +12,11 @@ if (isset($_GET['page'])) {
         include_once '../public/user/header.php';
     }
 }
+=======
+<?php
+    session_start();
+    include "../public/user/playlist_create.php";
+>>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
 ?>
 <html lang="en">
 
@@ -32,7 +38,10 @@ if (isset($_GET['page'])) {
             z-index: 9999;
             display: none;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
         .playlist-container {
             position: absolute;
             top: 50%;
@@ -54,6 +63,7 @@ if (isset($_GET['page'])) {
         </div>
         <div class="navigation">
             <ul>
+<<<<<<< HEAD
                 <li><a href="home.php?page=home1"><span class="fa fa-home"></span><span>Home</span></a></li>
                 <li><a href="#" id="top_music_link"><span class="fa fas fa-fire"></span><span>Top Music</span></a></li>
 
@@ -61,6 +71,13 @@ if (isset($_GET['page'])) {
                 <li><a href="#" id="songs_link"><span class="fa fas fa-heart"></span><span>Liked Songs</span></a></li>
 
                 <li><a href="home.php?page=library"><span class="fa fas fa-book"></span>Your Library</a></li>
+=======
+                <!-- <li><a href="#"><span class="fa fa-home"></span><span>Home</span></a></li> -->
+                <li><a href="#" id="top_music_link"><span class="fa fas fa-book"></span><span>Top Music</span></a></li>
+                <!-- <li><a href="#"><span class="fa fas fa-book"></span><span>Your Library</span></a></li> -->
+                <li><a href="#" id="playlist_link"><span class="fa fas fa-plus-square"></span><span>Create Playlist</span></li>
+                <li><a href="#" id="songs_link"><span class="fa fas fa-heart"></span><span>Liked Songs</span></a></li>
+>>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
             </ul>
         </div>
     </div>
@@ -68,8 +85,64 @@ if (isset($_GET['page'])) {
    
     <div class="main-container" id="main-container">
 
+<<<<<<< HEAD
        
        
+=======
+    <div class="main-container">
+        <div class="topbar">
+            <div class="search">
+                <input type="text" placeholder="Tìm kiếm..." class="search-input">
+                <button><span class="fa fa-search"></span></button>
+            </div> 
+            <div class="navbar">
+                <!-- <li>
+                        <a href="#">Download</a>
+                    </li> -->
+                <!-- <li class="divider">|</li> -->
+                <div class="btn">
+                <button type="button" onclick="location.href='sign_up.php';">Sign Up</button>
+                <button type="button" onclick="location.href='login.php';">Login</button>
+                </div>
+            </div>
+        </div>
+        <div class="main-slider">
+            <h2>Playlists</h2>
+            <div class="list">
+            <?php foreach ($user_playlists as $playlist): ?>
+                <div class="item" onclick="loadSongsByPlaylist(<?php echo $playlist['pid']; ?>)">
+                    <img src="<?php echo $playlist['playlist_image']; ?>" />
+                    <h4><?php echo $playlist['playlist_name']; ?></h4>
+                    <p>Description...</p>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="main-slider">
+            <h2>Album</h2>
+            <div class="list">
+            <?php foreach ($albums as $album): ?>
+                <div class="item" onclick="loadSongsByAlbum(<?php echo $album['abid']; ?>)">
+                    <img src="<?php echo $album['album_image']; ?>" />
+                    <h4><?php echo $album['title']; ?></h4>
+                    <p>Description...</p>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="main-slider">
+            <h2>Nghệ Sĩ</h2>
+            <div class="list">
+            <?php foreach ($artists as $artist): ?>
+                <div class="item" onclick="loadSongsByArtist(<?php echo $artist['aid']; ?>)">
+                    <img src="<?php echo $artist['artist_image']; ?>" />
+                    <h4><?php echo $artist['artist_name']; ?></h4>
+                    <p>Description...</p>
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+>>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
         <div class="menu-side">
             <div class="menu-buttons">
                 <div class="button">
@@ -113,7 +186,11 @@ if (isset($_GET['page'])) {
         </div>
     </div>
     <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
     <script src="../public/assets/js/home.js">
+=======
+    <script  src="../public/assets/js/home.js">
+>>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
         //chuyển nhạc
         var currentSongIndex = 0;
         var songs = <?php echo json_encode($songs); ?>;

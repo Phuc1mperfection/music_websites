@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 
 function show($stuff)
 {
@@ -61,7 +61,6 @@ function db_query_one($query, $data = array())
 	}
 	return false;
 }
-
 function db_query_insert($query, $data = array()) //insert db
 {
     $con = db_connect();
@@ -110,6 +109,8 @@ function set_value($key, $default = '')
 
 		return $default;
 	}
+
+	return '';
 }
 
 function set_select($key, $value, $default = '')
@@ -143,12 +144,10 @@ function logged_in()
 	return false;
 }
 
-
-
-function is_user() //Kiểm tra role user
+function is_admin()
 {
 
-	if(!empty($_SESSION['USER']['role']) && $_SESSION['USER']['role'] == 'user'){
+	if(!empty($_SESSION['USER']['role']) && $_SESSION['USER']['role'] == 'admin'){
 		return true;
 	}
 

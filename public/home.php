@@ -1,10 +1,6 @@
 <?php
-    include "../public/functions.php";
-    //chưa lấy được mã người dùng từ login lên là lấy mặc định
-    $uid = 1;
-    $user_playlists = get_user_playlists($uid);
-    $albums = get_albums();
-    $artists = get_artists();
+    session_start();
+    include "../public/user/playlist_create.php";
 ?>
 <html lang="en">
 <head>
@@ -14,6 +10,29 @@
     <link rel="stylesheet" href="../public/assets/css/style1.css">
     <link rel="stylesheet" href="../public/assets/css//preview.css">
     <title>Music Website</title>
+    <style>
+        .playlist-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+        }
+        .playlist-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 340px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,12 +43,10 @@
         <div class="navigation">
             <ul>
                 <!-- <li><a href="#"><span class="fa fa-home"></span><span>Home</span></a></li> -->
-                <!-- dựa vào số lượng view nhưng do chưa có chưa hoạt động -->
-                <li><a href="#" id="songs_link"><span class="fa fas fa-book"></span><span>Top Music</span></a></li>
+                <li><a href="#" id="top_music_link"><span class="fa fas fa-book"></span><span>Top Music</span></a></li>
                 <!-- <li><a href="#"><span class="fa fas fa-book"></span><span>Your Library</span></a></li> -->
-                <li><a href="#"><span class="fa fas fa-plus-square"></span><span>Create Playlist</span></li>
-                <!-- csdl chưa có lấy được uid truyền vào nên chưa lấy đc -->
-                <li><a href="#" id="top_music_link"><span class="fa fas fa-heart"></span><span>Liked Songs</span></a></li>
+                <li><a href="#" id="playlist_link"><span class="fa fas fa-plus-square"></span><span>Create Playlist</span></li>
+                <li><a href="#" id="songs_link"><span class="fa fas fa-heart"></span><span>Liked Songs</span></a></li>
             </ul>
         </div>
     </div>
@@ -56,7 +73,7 @@
             <div class="list">
             <?php foreach ($user_playlists as $playlist): ?>
                 <div class="item" onclick="loadSongsByPlaylist(<?php echo $playlist['pid']; ?>)">
-                    <img src="../public/assets/images/hero.jpg" />
+                    <img src="<?php echo $playlist['playlist_image']; ?>" />
                     <h4><?php echo $playlist['playlist_name']; ?></h4>
                     <p>Description...</p>
                 </div>
@@ -107,8 +124,8 @@
         <div class="preview">
             <img src="" alt="image-song">
             <h2 id="name_song">
-                Name song
-                <div class="subtitle">Name Artist</div>
+                Names_song
+                <div class="subtitle">Name_Artist</div>
             </h2>
             <div class="icon">
                 <i class="bi bi-skip-start-fill" id="previous_button"></i>
@@ -121,8 +138,13 @@
             </div>
         </div>
     </div>
+    <div class="playlist-overlay" id="playlist-overlay">
+        <div class="playlist-container" id="playlist-container">
+            <!-- Playlist content will be loaded here -->
+        </div>
+    </div>
     <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
-    <script>
+    <script  src="../public/assets/js/home.js">
         //chuyển nhạc
         var currentSongIndex = 0;
         var songs = <?php echo json_encode($songs); ?>;
@@ -138,42 +160,6 @@
         }
         document.getElementById('previous_button').addEventListener('click', previousSong);
         document.getElementById('next_button').addEventListener('click', nextSong);
-        //đưa nhạc từ menusong vào preview
-        function loadSong(title, artist, image, filePath) {
-            document.getElementById('name_song').innerHTML = `
-                ${title} <div class="subtitle">${artist}</div>`;
-            document.querySelector('.preview img').src = image;
-            document.querySelector('.container-audio audio').src = "../public/uploads/song/" + filePath;
-        }
-        //sự kiện click list nhạc theo album, playlist, artist.
-        function loadSongsByPlaylist(pid) {
-            loadSongs('playlist', pid);
-        }
-        function loadSongsByAlbum(abid) {
-            loadSongs('album', abid);
-        }
-        function loadSongsByArtist(aid) {
-            loadSongs('artist', aid);
-        }
-        document.querySelector('.playlist_button').addEventListener('click', function() {
-            loadSongs('all', '');
-        });
-        document.getElementById('songs_link').addEventListener('click', function() {
-            loadSongs('like', '');
-        });
-        document.getElementById('top_music_link').addEventListener('click', function() {
-            loadSongs('top', '');
-        });
-        function loadSongs(option, id) {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.querySelector('.menu-song ul').innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "load_songs.php?option=" + option + "&id=" + id, true);
-            xhttp.send();
-        }
     </script>
 </body>
 </html>

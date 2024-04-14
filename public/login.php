@@ -85,7 +85,7 @@
     include "../app/core/functions.php";
     include "../app/core/config.php";
     include "../app/pages/includes/header.php";
-
+    session_start();
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $values = [];
         $values['username'] = trim($_POST['username']);
@@ -99,13 +99,14 @@
 
             if (!empty($row) && $password == $row['password']) {
                 authenticate($row);
+                $_SESSION['uid'] = $row['id'];
                 message("Login successful");
 
                 // Kiểm tra vai trò của người dùng và chuyển hướng tương ứng
                 if ($row['role'] == 'admin') {
                     redirect('admin');
                 } else {
-                    redirect('home.php');
+                    redirect('home.php?uid=' . $row['id']);
                 }
             } else {
                 message("Wrong username or password");

@@ -9,11 +9,11 @@
 
 	<header>
 		<div class="logo-holder">
-		<center><img src="assets/images/treble-clef.png" style="border-radius: 10%;"></center>
+		<center><img src="assets/images/logo.jpg" ></center>
 		</div>
 		<div class="header-div">
 			<div class="main-title">
-				PRO MÚSIC
+				
 				
 			</div>
 			<div class="main-nav">

@@ -1,16 +1,11 @@
 <?php
-include "../public/functions.php";
+include "../public/user/functions.php";
 
-// Kiểm tra xem uid có tồn tại trong session hay không
-// if(isset($_SESSION['uid']) && isset($_GET['option']) && isset($_GET['id'])) {
-//     $option = $_GET['option'];
-//     $id = $_GET['id'];
-//     $uid = $_SESSION['uid']; 
-// Lấy uid từ session
 if(isset($_GET['option']) && isset($_GET['id'])) {
     $option = $_GET['option'];
     $id = $_GET['id'];
-
+    $uid = isset($_GET['uid']) ? $_GET['uid'] : null;
+    $uid = $_GET['id']; 
     if($option === 'playlist') {
         $songs = get_songs_by_playlist($id);
     } elseif($option === 'album') {
@@ -20,11 +15,10 @@ if(isset($_GET['option']) && isset($_GET['id'])) {
     } elseif( $option === 'all'){
         $songs = get_all_songs();
     } elseif( $option === 'top'){
-        $songs = get_top_songs(10);
+        $songs = get_top_songs();
+    } elseif( $option === 'like' && $uid){
+        $songs = get_favorite_songs($uid);
     }
-    // } elseif( $option === 'like'){
-    //     $songs = get_favorite_songs($uid)
-    // }
     displaySongs($songs);
 }
 ?>

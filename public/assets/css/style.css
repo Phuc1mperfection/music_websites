@@ -76,16 +76,45 @@ header{
 	padding: 10px;
 	display: flex;
 }
-.dropdown:hover .dropdown-list {
-    display: block; /* Show dropdown list when hovering over dropdown */
+.dropdown .dropbtn {
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
 }
 
-.dropdown-list {
-    position: absolute;
-    border: solid thin #ccc;
-    background-color: white;
-    margin-top: 10px;
-    display: none; /* Hide dropdown list by default */
+.dropdown:hover .dropbtn {
+	background-color: #102C57;
+	transition: 1.4s ease-in-out;
+	border-radius: 10rem;
+}
+
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #fff;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	transition: 0.4s ease-in-out;
+	color: #fff;
+	background-color: #102C57;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
 }
 header .active{
 	border-bottom: solid 4px #67C6E3;

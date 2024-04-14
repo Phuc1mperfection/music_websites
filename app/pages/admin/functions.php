@@ -223,10 +223,10 @@ function get_user_playlists($uid) {
 	return db_query($query, array($uid));
 }
 function get_albums() {
-	$query = "SELECT abid, title, album_image
+	$query = "SELECT albums.abid, albums.title, albums.album_image
 			FROM albums
-			WHERE status = 1
-			GROUP BY abid";
+			WHERE albums.status = 1
+			GROUP BY albums.abid";
 	return db_query($query);
 }
 function get_artists() {

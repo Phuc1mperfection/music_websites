@@ -66,7 +66,7 @@ function db_query_insert($query, $data = array()) //insert db
     return false;
 }
 function get_user_playlists($uid) {
-    $query = "SELECT pid, playlist.playlist_name
+    $query = "SELECT pid, playlist.playlist_name, playlist.playlist_image
 			FROM users
 			JOIN playlist ON users.id = playlist.uid
 			WHERE uid = ?";

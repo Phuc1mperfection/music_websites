@@ -23,13 +23,17 @@
             width: 300px;
             text-align: center;
         }
-        input[type="text"] {
+        input[type="text"], input[type="file"] {
             width: calc(100% - 20px);
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        input[type="file"] {
+            text-align: center;
+        }
+        
         button[type="submit"], button[type="button"] {
             padding: 10px 20px;
             background-color: #4caf50;
@@ -57,14 +61,15 @@
         <?php if (isset($success)): ?>
             <p style="color: green;"><?= $success ?></p>
         <?php endif; ?>
-
         <?php if (isset($error)): ?>
             <p style="color: red;"><?= $error ?></p>
         <?php endif; ?>
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <input type="text" name="playlist_name" placeholder="Enter playlist name" required>
+            <input type="text" name="playlist_image" id="playlist_image" placeholder="Enter playlist image" required>
+            <input type="file" name="file_image" id="file_image" accept="image/*" onchange="updateImageName()">
             <button type="submit">Create Playlist</button>
-            <button type="button" class="back-button" onclick="window.location.href='home.php'">Back to Home</button>
+            <button type="button" class="back-button" onclick="cancelAndRedirect()">Cancel</button>
         </form>
     </div>
 </body>

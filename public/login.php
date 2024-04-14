@@ -85,7 +85,7 @@
     include "../app/core/functions.php";
     include "../app/core/config.php";
     include "../app/pages/includes/header.php";
-
+    session_start();
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $values = [];
         $values['username'] = trim($_POST['username']);
@@ -106,7 +106,7 @@
                 if ($row['role'] == 'admin') {
                     redirect('admin');
                 } else {
-                    redirect('home.php');
+                    redirect('home.php?uid=' . $row['id']);
                 }
             } else {
                 message("Wrong username or password");

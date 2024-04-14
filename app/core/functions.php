@@ -61,6 +61,19 @@ function db_query_one($query, $data = array())
 	}
 	return false;
 }
+function db_query_insert($query, $data = array()) //insert db
+{
+    $con = db_connect();
+    $stm = $con->prepare($query);
+    if($stm)
+    {
+        $check = $stm->execute($data);
+        if($check){
+            return $stm->rowCount();
+        }
+    }
+    return false;
+}
 
 function message($message = '', $clear = false)
 {

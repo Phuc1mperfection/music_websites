@@ -8,7 +8,7 @@ require page('includes/header');
 
 ?>
 	
-	<div class="section-title">Artists</div>
+	<div class="section-title">Music</div>
 
 	<section class="content">
 		

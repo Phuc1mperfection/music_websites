@@ -2,11 +2,7 @@ function loadSong(title, artist, image, filePath) {
     document.getElementById('name_song').innerHTML = `
         ${title} <div class="subtitle">${artist}</div>`;
     document.querySelector('.preview img').src = image;
-<<<<<<< HEAD
     document.querySelector('.container-audio audio').src = "../public/" + filePath;
-=======
-    document.querySelector('.container-audio audio').src = "../public/uploads/song/" + filePath;
->>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
 }
 function loadSongsByPlaylist(pid) {
     loadSongs('playlist', pid);
@@ -62,8 +58,4 @@ function loadSongs(option, id) {
     };
     xhttp.open("GET", "load_songs.php?option=" + option + "&id=" + id, true);
     xhttp.send();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2

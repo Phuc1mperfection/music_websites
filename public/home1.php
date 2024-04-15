@@ -1,7 +1,11 @@
 <?php
 $albums = get_albums();
 $artists = get_artists();
-include_once '../public/user/header.php';
+if (isset($_SESSION['uid'])) {
+    include_once '../public/user/user_header.php';
+} else {
+    include_once '../public/user/header.php';
+}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

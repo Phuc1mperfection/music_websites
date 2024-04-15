@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +13,7 @@
 	
 	<header style="background-color: white; color: black;">
 		<div class="logo-holder">
-		<center><img src="../assets/images/treble-clef.png" style="border-radius: 10%;"></center>
+		<a href="dashboard"><center><img src="../assets/images/treble-clef.png" style="border-radius: 10%;"></center></a>
 		</div>
 		<div class="heaeder-div">
 			<div class="main-title">

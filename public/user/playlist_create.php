@@ -1,23 +1,16 @@
 <?php
     include "functions.php";
-<<<<<<< HEAD
 
     //Kiểm tra xem session uid đã tồn tại chưa
     $uid = isset($_SESSION['uid']) ? $_SESSION['uid'] : '';
     if (!empty($uid)) {
-=======
     session_start();
     $uid = $_SESSION['uid'];
->>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
     $user_playlists = get_user_playlists($uid);
     $albums = get_albums();
     $artists = get_artists();
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['playlist_name'])) {
-<<<<<<< HEAD
         $playlistName = filter_var(trim($_POST['playlist_name']) );
-=======
-        $playlistName = filter_var(trim($_POST['playlist_name']), FILTER_SANITIZE_STRING);
->>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
         if (!empty($playlistName)) {
             $existingPlaylist = db_query("SELECT * FROM playlist WHERE playlist_name = :playlist_name AND uid = :uid", ['playlist_name' => $playlistName, 'uid' => $uid]);
             if ($existingPlaylist !== false && count($existingPlaylist) > 0) {
@@ -30,11 +23,7 @@
                     move_uploaded_file($_FILES['file_image']['tmp_name'], $uploadedFile);
                     $playlistImage = $uploadedFile;
                 } else {
-<<<<<<< HEAD
                     $playlistImage = $uploadDir.filter_var(trim($_POST['playlist_image']));
-=======
-                    $playlistImage = $uploadDir.filter_var(trim($_POST['playlist_image']), FILTER_SANITIZE_STRING);
->>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
                 }
                 if (empty($error)) {
                     $values = [
@@ -56,8 +45,5 @@
             $error = 'Please provide a playlist name.';
         }
     }
-<<<<<<< HEAD
 }
-=======
->>>>>>> 625abc6a53df4901bd1a88161d70d459aa2266d2
 ?>

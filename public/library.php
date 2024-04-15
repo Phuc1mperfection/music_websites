@@ -1,6 +1,10 @@
 
 <?php
-    include_once '../public/user/header.php';
+    if (isset($_SESSION['uid'])) {
+        include_once '../public/user/user_header.php';
+    } else {
+        include_once '../public/user/header.php';
+    }
 
 ?>
 <!DOCTYPE html>
@@ -18,29 +22,33 @@
 <body>
 <div class="main-container" id="main-container">
 <div class="main-slider">
-            <h2>Playlists</h2>
+            <h2>Your Playlists</h2>
             <div class="list">
-                <?php
-                if (is_array($user_playlists)) {
-                    foreach ($user_playlists as $playlist) : ?>
-                        <div class="item" onclick="loadSongsByPlaylist(<?php echo $playlist['pid']; ?>)">
-                            <img src="<?php echo $playlist['playlist_image']; ?>" />
-                            <h4><?php echo $playlist['playlist_name']; ?></h4>
-                            <p>Description...</p>
-                            <?php
-                            $songs = get_songs_by_playlist($playlist['pid']);
-                            if ($songs) {
-                                echo "<p>" . count($songs) . " song(s)</p>";
-                            } else {
-                                echo "<p>Playlist is empty.</p>";
-                            }
-                            ?>
-                        </div>
-                <?php endforeach;
-                } else {
-                    echo "<p>No playlists available.</p>";
-                }
-                ?>
+            <?php
+    if (isset($_SESSION['uid'])) {
+        if (is_array($user_playlists)) {
+            foreach ($user_playlists as $playlist) : ?>
+                <div class="item" onclick="loadSongsByPlaylist(<?php echo $playlist['pid']; ?>)">
+                    <img src="<?php echo $playlist['playlist_image']; ?>" />
+                    <h4><?php echo $playlist['playlist_name']; ?></h4>
+                    <p>Description...</p>
+                    <?php
+                    $songs = get_songs_by_playlist($playlist['pid']);
+                    if ($songs) {
+                        echo "<p>" . count($songs) . " song(s)</p>";
+                    } else {
+                        echo "<p>Playlist is empty.</p>";
+                    }
+                    ?>
+                </div>
+            <?php endforeach;
+        } else {
+            echo "<p>No playlists available.</p>";
+        }
+    } else {
+        echo "<p>You need to log in to see your playlists.</p>";
+    }
+    ?>
             </div>
         </div>
 </body>

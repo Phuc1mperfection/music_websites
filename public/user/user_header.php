@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="../public/assets/css/dropdown.css">
 
 </head>
-
+<style>
+    .p-class {
+    color: blue;
+    font-size: 18px;
+}
+</style>
 <header>
     <div class="topbar">
         <div class="search">
@@ -21,6 +26,9 @@
                         <a href="#">Download</a>
                     </li> -->
             <!-- <li class="divider">|</li> -->
+                <?php
+                echo "<p>Hi, " . $_SESSION['uid'] . "</p>";
+            ?>
             <div class="dropdown">
                 <i class="fas fa-bars dropbtn" onclick="dropdown()"></i>
                 <div id="myDropdown" class="dropdown-content">

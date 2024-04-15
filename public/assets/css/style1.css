@@ -16,7 +16,6 @@ body {
 
 .sidebar {
     position: fixed;
-    border: 1px solid #ffff;
     left: 0;
     top: 0;
     opacity: 1;
@@ -81,7 +80,7 @@ body {
     display: flex;
     align-items: center;
     position: fixed;
-    left: 170px;
+    left: 165px;
     right: 0;
     top: 0;
     height: 70px;
@@ -111,7 +110,7 @@ body {
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px  ;
 }
 
 .topbar .search button {

@@ -4,7 +4,8 @@
     $uid = $_SESSION['uid'];
     $user_playlists = get_user_playlists($uid);
     $albums = get_albums();
-    $artists = get_artists();
+    // $artists = get_artists();
+    $artists = get_artists_with_follow_status($uid);
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['playlist_name'])) {
         $playlistName = filter_var(trim($_POST['playlist_name']), FILTER_SANITIZE_STRING);
         if (!empty($playlistName)) {

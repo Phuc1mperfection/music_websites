@@ -65,6 +65,17 @@ function db_query_insert($query, $data = array()) //insert db
     }
     return false;
 }
+function db_query_delete($query, $data = array())
+{
+    $con = db_connect();
+    $stm = $con->prepare($query);
+    if($stm)
+    {
+        $check = $stm->execute($data);
+        return $check;
+    }
+    return false;
+}
 function get_user_playlists($uid) {
     $query = "SELECT pid, playlist.playlist_name, playlist.playlist_image
 			FROM users
@@ -85,6 +96,19 @@ function get_artists() {
 	$query = "SELECT id AS aid, name AS artist_name, image AS artist_image
 			FROM artists";
 	return db_query($query);
+}
+function is_following($uid, $aid) {
+    $query = "SELECT id FROM follow WHERE uid = :uid AND aid = :aid";
+    $data = array(':uid' => $uid, ':aid' => $aid);
+    $result = db_query($query, $data);
+    return $result ? true : false;
+}
+function get_artists_with_follow_status($uid) {
+    $artists = get_artists();
+    foreach ($artists as $key => $artist) {
+        $artists[$key]['is_following'] = is_following($uid, $artist['aid']);
+    }
+    return $artists;
 }
 
 function get_songs_by_playlist($pid) {

@@ -56,6 +56,7 @@
     </style>
 </head>
 <body>
+
     <div class="form-container">
         <h1>New Playlist</h1>
         <?php if (isset($success)): ?>

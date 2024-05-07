@@ -1,14 +1,15 @@
 .preview {
     position: fixed;
-    border: 1px solid #ffff;
     bottom: 0;
-    left: 0;
+    left: 170px;
     right:0;
-    background: #282b5c;
+    background: transparent;
+    background-color: rgb(255, 255, 255, .2);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px 5px;
+    /* z-index: 3; */
 }
 .preview img {
     width: 15%;
@@ -17,14 +18,13 @@
 }
 .preview h2{
     width: 20%;
-    border: 1px solid #ffff;
     color: #ffff;
     font-size: 20px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .preview h2 .subtitle {
-    color: #1fb9b1;
+    color: #f2f2f27c;
     font-size: 15px;
     text-overflow: ellipsis;
     white-space: nowrap;

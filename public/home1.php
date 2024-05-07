@@ -1,13 +1,13 @@
 <?php
-$albums = get_albums();
-$artists = get_artists();
 if (isset($_SESSION['uid'])) {
     include_once '../public/user/user_header.php';
 } else {
     include_once '../public/user/header.php';
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +17,9 @@ if (isset($_SESSION['uid'])) {
     <title>Document</title>
 </head>
 <body>
-<div class="main-container" id="main-container">
-<div class="main-slider">
+    <div class="main-container" id="main-container">
+        <div class="main-slider">
+            
             <h2>Album</h2>
             <div class="list">
                 <?php foreach ($albums as $album) : ?>
@@ -38,10 +39,17 @@ if (isset($_SESSION['uid'])) {
                         <img src="<?php echo $artist['artist_image']; ?>" />
                         <h4><?php echo $artist['artist_name']; ?></h4>
                         <p>Description...</p>
+                        <button class="follow-button" data-following="<?php echo $artist['is_following'] ? 'true' : 'false'; ?>" 
+                        data-artist-id="<?php echo $artist['aid']; ?>">                            <?php echo $artist['is_following'] ? '✔' : 'Follow'; ?>
+                        </button>
                     </div>
                 <?php endforeach; ?>
             </div>
+            <!-- <button class="next-btn"><i class="bi bi-caret-right-fill"></i></button>
+            <button class="prev-btn"><i class="bi bi-caret-left-fill"></i></button> -->
         </div>
-        </div>
+    </div>
+
 </body>
+
 </html>

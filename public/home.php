@@ -1,6 +1,6 @@
-<?php 
+<?php
 session_start();
-include_once "../public/user/playlist_create.php";
+include_once "../public/user/playlist_handler.php";
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
     include($page . ".php");
@@ -29,7 +29,7 @@ if (isset($_GET['page'])) {
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
+            z-index: 9;
             display: none;
         }
 
@@ -55,33 +55,25 @@ if (isset($_GET['page'])) {
         <div class="navigation">
             <ul>
                 <li><a href="home.php?page=home1"><span class="fa fa-home"></span><span>Home</span></a></li>
-                <li><a href="#" id="top_music_link"><span class="fa fas fa-fire"></span><span>Top Music</span></a></li>
-
-                <li><a href="#" id="playlist_link"><span class="fa fas fa-plus-square"></span><span>Create Playlist</span></li>
                 <li><a href="#" id="songs_link"><span class="fa fas fa-heart"></span><span>Liked Songs</span></a></li>
-
+                <li><a href="#" id="top_music_link"><span class="fa fas fa-fire"></span><span>Top Music</span></a></li>
                 <li><a href="home.php?page=library"><span class="fa fas fa-book"></span>Your Library</a></li>
+                <li><a href="home.php?page=user/user_information"><span class="fa fas fa-user"></span>Account</a></li>
             </ul>
         </div>
     </div>
-    
-   
     <div class="main-container" id="main-container">
-
-       
-       
         <div class="menu-side">
             <div class="menu-buttons">
                 <div class="button">
                     <button class="playlist_button">Track_Listening</button>
                 </div>
                 <div class="button">
-                    <button class="recent_button">History_Recently</button>
+                    <button class="recent_button" id="recent_button">Top Songs</button>
                 </div>
             </div>
             <div class="menu-song">
                 <div class="title">
-
                 </div>
                 <ul>
                     <?php
@@ -90,7 +82,7 @@ if (isset($_GET['page'])) {
                 </ul>
             </div>
         </div>
-       <div class="preview">
+        <div class="preview">
             <img src="" alt="image-song">
             <h2 id="name_song">
                 Names_song
@@ -101,7 +93,7 @@ if (isset($_GET['page'])) {
                 <i class="bi bi-skip-end-fill" id="next_button"></i>
             </div>
             <div class="container-audio">
-                <audio controls  loop>
+                <audio controls loop>
                     <source src="../public/uploads/song/0.mp3" type="audio/ogg">
                 </audio>
             </div>
@@ -113,8 +105,14 @@ if (isset($_GET['page'])) {
         </div>
     </div>
     <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
-    <script src="../public/assets/js/home.js">
+    <script src="../public/assets/js/home.js"></script>
+    <script>
         //chuyển nhạc
+        window.onload = function() {
+    document.getElementById('recent_button').addEventListener('click', function() {
+        loadSongs('all', '');
+    });
+};
         var currentSongIndex = 0;
         var songs = <?php echo json_encode($songs); ?>;
 
@@ -131,6 +129,12 @@ if (isset($_GET['page'])) {
         }
         document.getElementById('previous_button').addEventListener('click', previousSong);
         document.getElementById('next_button').addEventListener('click', nextSong);
+        document.getElementById('songs_link').addEventListener('click', function() {
+            loadSongs('like', '<?php echo $uid; ?>');
+        });
+        document.getElementById('top_music_link').addEventListener('click', function() {
+            loadSongs('top', '');
+        });
     </script>
 </body>
 

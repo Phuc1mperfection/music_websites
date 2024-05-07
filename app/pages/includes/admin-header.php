@@ -28,6 +28,7 @@
 				<div class="nav-item"><a href="<?=ROOT?>/admin/songs">Songs</a></div>
 				<div class="nav-item"><a href="<?=ROOT?>/admin/categories">Categories</a></div>
 				<div class="nav-item"><a href="<?=ROOT?>/admin/artists">Artists</a></div>
+				<div class="nav-item"><a href="<?=ROOT?>/admin/stats">Stats</a></div>
 				<a href="#"></a>
 				<div class="nav-item"><a href="<?=ROOT?>/logout">Logout</a></div>
 			</div>

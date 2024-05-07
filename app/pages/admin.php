@@ -2,8 +2,7 @@
 
 
 <?php 
-
-	$section 	= $URL[1] ?? "dashboard";
+$section 	= $URL[1] ?? "dashboard";
 	$action 	= $URL[2] ?? null;
 	$id 		= $URL[3] ?? null;
 
@@ -27,7 +26,9 @@
 		case 'songs':
 			require page('admin/songs');
 			break;
-		
+		case 'stats':
+			require page('admin/stats');
+			break;
 		default:
 			require page('admin/404');
 			break;

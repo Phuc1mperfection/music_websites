@@ -1,5 +1,4 @@
 <?php 
-session_start();
 
 
 function show($stuff)
@@ -62,7 +61,6 @@ function db_query_one($query, $data = array())
 	}
 	return false;
 }
-
 function db_query_insert($query, $data = array()) //insert db
 {
     $con = db_connect();
@@ -112,7 +110,7 @@ function set_value($key, $default = '')
 		return $default;
 	}
 
-	return ''; 
+	return '';
 }
 
 function set_select($key, $value, $default = '')
@@ -146,12 +144,10 @@ function logged_in()
 	return false;
 }
 
-
-
-function is_user() //Kiểm tra role user
+function is_admin()
 {
 
-	if(!empty($_SESSION['USER']['role']) && $_SESSION['USER']['role'] == 'user'){
+	if(!empty($_SESSION['USER']['role']) && $_SESSION['USER']['role'] == 'admin'){
 		return true;
 	}
 
@@ -214,89 +210,4 @@ function get_artist($id)
 	}
 
 	return "Unknown";
-}
-function get_user_playlists($uid) {
-	$query = "SELECT user_playlists.pid, playlist_name
-			FROM user_playlists
-			JOIN playlist ON user_playlists.pid = playlist.pid
-			WHERE uid = ?";
-	return db_query($query, array($uid));
-}
-function get_albums() {
-	$query = "SELECT albums.abid, albums.title, albums.album_image
-			FROM albums
-			WHERE albums.status = 1
-			GROUP BY albums.abid";
-	return db_query($query);
-}
-function get_artists() {
-	$query = "SELECT aid, artist_name, artist_image
-			FROM artists";
-	return db_query($query);
-}
-function get_songs_by_playlist($pid) {
-	$query = "SELECT songs.sid, songs.title, artists.artist_name, songs.song_image, songs.file_path
-			FROM songs
-			INNER JOIN user_playlists ON songs.sid = user_playlists.sid
-			INNER JOIN artists ON songs.aid = artists.aid
-			WHERE user_playlists.pid = ?";
-	return db_query($query, array($pid));
-}
-function get_songs_by_album($abid) {
-	$query = "SELECT songs.sid, songs.title, artists.artist_name, songs.song_image, songs.file_path
-			FROM songs
-			INNER JOIN albums ON songs.sid = albums.sid
-			INNER JOIN artists ON songs.aid = artists.aid
-			WHERE abid = ?";
-	return db_query($query, array($abid));
-}
-function get_songs_by_artist($aid) {
-	$query = "SELECT songs.sid, songs.title, artist_name, songs.song_image, songs.file_path
-			FROM songs 
-			INNER JOIN artists ON songs.aid = artists.aid
-			WHERE songs.aid = ?";
-	return db_query($query, array($aid));
-}
-function get_favorite_songs($uid) {
-	$query = "SELECT songs.sid, songs.title, artists.artist_name, songs.song_image, songs.file_path
-			FROM user_playlists
-			INNER JOIN songs ON user_playlists.sid = songs.sid
-			INNER JOIN artists ON songs.aid = artists.aid
-			WHERE user_playlists.uid = ? AND user_playlists.favorite = 1";
-	return db_query($query, array($uid));
-}
-
-function get_top_songs($limit) {
-	$query = "SELECT songs.sid, songs.title, artists.artist_name, songs.song_image, songs.file_path
-			FROM user_playlists
-			INNER JOIN songs ON user_playlists.sid = songs.sid
-			INNER JOIN artists ON songs.aid = artists.aid
-			GROUP BY songs.sid
-			ORDER BY COUNT(user_playlists.sid) DESC
-			LIMIT ?";
-	return db_query($query, array($limit));
-}
-function get_all_songs(){
-	$query = "SELECT songs.sid, songs.title, artists.artist_name, songs.song_image, songs.file_path
-	FROM songs
-	INNER JOIN artists ON songs.aid = artists.aid";
-	return db_query($query);
-}
-function displaySongs($songs) {
-	if ($songs !== false) {
-		$count = 1;
-		foreach ($songs as $song) {
-			$count_str = str_pad($count, 2, '0', STR_PAD_LEFT);
-			echo "<li class='songItem' onclick='loadSong(\"{$song['title']}\", \"{$song['artist_name']}\",
-				\"{$song['song_image']}\", \"{$song['file_path']}\")'>";
-			echo "<span>{$count_str}</span>";
-			echo "<img src='{$song['song_image']}' alt=''>";
-			echo "<h5>{$song['title']} <br> <div class='subtitle'>{$song['artist_name']}</div></h5>";
-			echo "<i class='bi playlistPlay bi-play-fill' id='{$song['sid']}'></i>";
-			echo "</li>";
-			$count++;
-		}
-	} else {
-		echo "<p>No songs available.</p>";
-	}
 }

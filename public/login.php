@@ -57,8 +57,7 @@
         .alert {
             margin-bottom: 20px;
             padding: 10px;
-            background-color: white;
-            border: 1px solid #f5c6cb;
+            background-color: #f5c6cb;
             border-radius: 5px;
             color: #721c24;
         }

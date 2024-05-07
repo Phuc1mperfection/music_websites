@@ -2,18 +2,30 @@
 <html lang="en">
 
 <head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../public/assets/css/dropdown.css">
+    <link rel="stylesheet" href="../public/assets/css/style1.css">
 </head>
 
 <header>
     <div class="topbar">
         <div class="search">
-            <input type="text" placeholder="Tìm kiếm..." class="search-input">
-            <button><span class="fa fa-search"></span></button>
+
+            <div class="search-container">
+                <form action="" class="search-bar">
+                    <input type="text" placeholder="Search anything" class="search-input">
+                    <button type="submit" class="search-button"><img src="./assets/images/search.png" alt="dgf"></button>
+            </div>
+            </form>
         </div>
         <div class="navbar">
             <!-- <li>
@@ -51,6 +63,7 @@
 </header>
 
 <body>
+
 </body>
 
 </html>

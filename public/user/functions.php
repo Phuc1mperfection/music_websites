@@ -1,5 +1,11 @@
 <?php
-include "../app/core/config.php";
+define("ROOT", "http://localhost:84/music_websites/public");
+define("DBDRIVER", "mysql");
+define("DBHOST", "localhost");
+define("DBUSER", "root");
+define("DBPASS", "");
+define("DBNAME", "music_website_db");
+
 function db_connect()
 {
 	$string = DBDRIVER.":hostname=".DBHOST.";dbname=".DBNAME;
@@ -132,22 +138,52 @@ function get_all_songs(){
 			INNER JOIN artists ON songs.artist_id = artists.id";
 	return db_query($query);
 }
-
+function db_query_delete($query, $data = array())
+{
+    $con = db_connect();
+    $stm = $con->prepare($query);
+    if($stm)
+    {
+        $check = $stm->execute($data);
+        return $check;
+    }
+    return false;
+}
+function is_following($uid, $aid) {
+    $query = "SELECT id FROM follow WHERE uid = :uid AND aid = :aid";
+    $data = array(':uid' => $uid, ':aid' => $aid);
+    $result = db_query($query, $data);
+    return $result ? true : false;
+}
+function get_artists_with_follow_status($uid) {
+    $artists = get_artists();
+    foreach ($artists as $key => $artist) {
+        $artists[$key]['is_following'] = is_following($uid, $artist['aid']);
+    }
+    return $artists;
+}
 function displaySongs($songs) {
 	if ($songs !== false) {
 		$count = 1;
 		foreach ($songs as $song) {
 			$count_str = str_pad($count, 2, '0', STR_PAD_LEFT);
-			echo "<li class='songItem' onclick='loadSong(\"{$song['title']}\", \"{$song['artist_name']}\",
-				\"{$song['song_image']}\", \"{$song['file_path']}\")'>";
-			echo "<span>{$count_str}</span>";
-			echo "<img src='{$song['song_image']}' alt=''>";
-			echo "<h5>{$song['title']} <br> <div class='subtitle'>{$song['artist_name']}</div></h5>";
-			echo "<i class='bi playlistPlay bi-play-fill' id='{$song['sid']}'></i>";
-			echo "</li>";
+			?>
+
+
+<li class='songItem' draggable='true' ondragstart='drag(event)' id='<?php echo $song['sid']; ?>' onclick='loadSong("<?php echo $song['title']; ?>", "<?php echo $song['artist_name']; ?>", "<?php echo $song['song_image']; ?>", "<?php echo $song['file_path']; ?>")'>
+    <span><?php echo $count_str; ?></span>
+    <img src='<?php echo $song['song_image']; ?>' alt=''>
+    <h5><?php echo $song['title']; ?> <br> <div class='subtitle'><?php echo $song['artist_name']; ?></div></h5>
+    <i class='bi playlistPlay bi-play-fill' id='<?php echo $song['sid']; ?>'></i>
+</li>
+
+<?php
+// Your PHP code after the HTML output...
 			$count++;
 		}
 	} else {
 		echo "<p style='color:#fff;margin-top:10px'>No songs available.</p>";
 	}
 }
+
+?>
